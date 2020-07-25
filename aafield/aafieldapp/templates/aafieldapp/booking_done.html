@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-1">
+    <div class="row pt-5 pl-5">
+        <div class="col-md-10 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong class="">Booking Confirmation</strong>
+                </div>
+                <div class="panel-body">
+                    <h1 class="display-4">Hello {{ reserve.Customer_Name }},</h1>
+                    <p class="lead">Congratulations!.Your booking has been confirmed with booking id, {{reserve_id}}. </p>
+                    <p><b>Park Name: </b>{{park_name}} </p>
+                    <p><b>Property Name: </b>{{property_name}}</p>
+                    <p><b>Park Address: </b>{{park_address}}</p>
+                    <p><b>Event Date: </b>{{event_date}}</p>
+                    <p><b>Slot: </b>{{slot}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

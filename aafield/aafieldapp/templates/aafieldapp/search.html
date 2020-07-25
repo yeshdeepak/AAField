@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-5 ">
+            <div class="card h-100  " >
+                <div class="card-body">
+                    <form method="get">
+                        <h3 class ="white-text">
+                            <i class ="white-text"> </i><b>Find a Park to conduct an event</b>
+                        </h3>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="Park">Parks</label>
+                                <select id="Park" class="form-control" name="Park">
+                                    <option selected>Park Name</option>
+                                    {% for parks in parks %}
+                                        <option>{{ parks.Park_Name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="Location">County</label>
+                                <select id="Location" class="form-control" name="Location">
+                                    <option selected>County</option>
+                                    {% for parks in parks %}
+                                        <option>{{ parks.County }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="publishDateMin">Event Date</label>
+                                <input type="date" class="form-control" id="publishDateMin" name="event_date">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <button class="btn btn-primary" type="submit">search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

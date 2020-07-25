@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Add Comments
+{% endblock %}
+{% block content %}
+<div class="container-1">
+    <div class="row pt-5 pl-5">
+        <div class="col-md-10 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong class="">Add Comments </strong>
+                </div>
+                <div class="panel-body">
+                    <form action="/updateComments" method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="Park">Park Name</label>
+                                <input type="text" class="form-control" id="Park"  value=" {{prop_status.Park_Name}} " name="park_name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="Property">Property Name</label>
+                                <input type="text" class="form-control" id="property"  value="{{prop_status.Property_Name}} "name="property_name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="Park">Reservation ID</label>
+                                <input type="text" class="form-control" id="reservationId"  value={{prop_status.Reservation_ID.id}} name="res_id">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="Park">Comment</label>
+                                <input type="text" class="form-control" id="comments" name="comments">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-row text-center">
+                                <button class="btn btn-primary" type="submit">Submit Comment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

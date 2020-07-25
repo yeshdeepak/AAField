@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% for prop in prop %}
+        <div class="container-1">
+            <div class="wrapper wrapper--w1070">
+                <div class="row-1">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="panel panel-default" style="width: 600px; height:700px">
+                            <div class="panel-header" style="width: 800px;">
+                                <h5><b>{{prop.Park_Name}}-{{prop.Property_Name}}</b></h5>
+                            </div>
+                            <div class="panel-body" >
+                                <h5 class="panel-text pt-3"><b>{{prop.Property_Description}}</b></h5>
+                                <div class="row-1">
+                                    <div class="column-1">
+                                        <a href="#"><img class="card-img-top" src={{prop.Property_Image.url}} alt=""style="width: 500px;"></a>
+                                    </div>
+                                </div>
+                                <P> </P>
+                                <p class="text pt-3"><b>Guest Capacity: </b>{{prop.Property_Guest_Capacity}}</p>
+                                <p> </p>
+                                <p class="text pt-3"><b>Location: </b>{{prop.Property_Location}}</p>
+                                <p> </p>
+                                <p class="text pt-3"><b>Price: </b>${{prop.Price }} for 2 hours.</p>
+                            </div>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p>
+                                <a href="{% url 'aafieldapp:updateproperty' id=prop.id %}">Update Property |</a>
+                                <a href="{% url 'aafieldapp:deleteproperty' id=prop.id %}">Delete Property </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

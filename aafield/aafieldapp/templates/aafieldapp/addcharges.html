@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Add Charges
+{% endblock %}
+{% block content %}
+<div class="container-1">
+    <div class="row pt-5 pl-5">
+        <div class="col-md-10 ">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong class="">Add Maintenance Charges </strong>
+                </div>
+                <div class="panel-body">
+                <form action="/finalPayment" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Park Name</label>
+                               <input type="text" class="form-control" id="Park"  value=" {{property_status.Park_Name}} " name="park_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Property">Property Name</label>
+                               <input type="text" class="form-control" id="property"  value="{{property_status.Property_Name}} "name="property_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Reservation ID</label>
+                               <input type="text" class="form-control" id="park"  value={{property_status.Reservation_ID.id}} name="res_id">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Comments</label>
+                               <input type="text" class="form-control" id="park"  value=" {{property_status.Property_Status_Description}} "name="comments">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Report Time</label>
+                               <input type="text" class="form-control" id="park"  value=" {{property_status.Report_TimeDate}} "name="reporttime">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Additional Charges</label>
+                               <input type="text" class="form-control" id="park" value="" placeholder="Enter Charges" name="expenses">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Maintenance Person</label>
+                               <input type="text" class="form-control" id="park"  value={{property_status.Maintenance_ID}} name="maint_id">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-row text-center">
+                            <button class="btn btn-primary" type="submit">Add Charges</button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

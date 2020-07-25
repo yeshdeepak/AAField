@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+         {% for parks in parks %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="card h-100">
+                    <h4 class="card-title">
+                        <a href="{% url 'aafieldapp:employeeparkview' id=parks.id %}"><b>{{parks.Park_Name}}</b></a>
+                    </h4>
+                    <a href="{% url 'aafieldapp:employeeparkview' id=parks.id %}"><img class="card-img-top" src={{parks.Park_Image.url}} alt=""></a>
+                    <div class="card-body">
+                        <p></p>
+                        <p class="card-text"><b>Address: </b>{{parks.Park_Address}}</p>
+                        <p></p>
+                        <p class="card-text"><b>County:</b>{{parks.County}}</p>
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+    </div>
+</div>
+{% endblock %}

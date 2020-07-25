@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block doctype %}<!DOCTYPE HTML>{% endblock %}
+
+{% block head %}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+     $(function(){
+    var dtToday = new Date();
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+    alert(maxDate);
+    $('#txtDate').attr('min', maxDate);
+     });
+    </script>
+</head>
+{% endblock %}
+{% block content %}
+    <div class="container-1">
+        {% for prop in prop %}
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="panel panel-default" style="width: 600px; height:8  00px">
+                        <div class="panel-heading">
+                            <h5><b>{{prop.Park_Name}}-{{prop.Property_Name}}</b></h5>
+                        </div>
+                        <div class="panel-body" >
+                            <p></p>
+                            <a href="#"><img class="card-img-top" src={{prop.Property_Image.url}} alt=""style="width: 500px;"></a>
+                            <P> </P>
+                            <p class="panel-text pt-3"><b>Guest Capacity: </b>{{prop.Property_Guest_Capacity}}</p>
+                            <p> </p>
+                            <p class="panel-text pt-3"><b>Location: </b>{{prop.Property_Location}}</p>
+                            <p> </p>
+                            <p class="panel-text pt-3"><b>Price: </b>${{prop.Price }} for 2 hours.</p>
+                            <p></p>
+                            <p></p>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-group ">
+                                        <label for="txtDate">Event Date</label>
+                                        <input type="date" class="form-control" id="txtDate" min={{current_date}} name="Event_Date">
+                                    </div>
+                                </div>
+                                <div class="form-row text-center">
+                                    <button class="btn btn-primary "  type="submit" name="viewslot"> View Slots</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

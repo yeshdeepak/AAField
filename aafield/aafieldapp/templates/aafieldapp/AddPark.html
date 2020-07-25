@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-5 ">
+            <div class="panel panel-default" style="width: 600px; height:500px">
+                <div class="panel-heading">
+                    <h5><b>Park</b></h5>
+                </div>
+            <div class="panel-body">
+           <!-- Full Page Intro -->
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form.Park_Name|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form.Park_Address|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form.County|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12 mb-0">
+                            {{ form.Park_Image|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="form-row text-center">
+                        <button class="btn btn-primary "  type="submit" name="add park">Submit</button>
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

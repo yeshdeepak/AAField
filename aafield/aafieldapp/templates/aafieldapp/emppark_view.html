@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    {% for park_list in park_list %}
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="panel panel-default" style="width: 600px; height:700px">
+                    <div class="panel-header pt-3">
+                        <h5><b>{{park_list.Park_Name}}</b></h5>
+                    </div>
+                    <div class="panel-body">
+                        <p></p>
+                        <a href="#"><img class="card-img-top" src={{park_list.Park_Image.url}} alt=""style="width: 500px;"></a>
+                        <P> </P>
+                        <p class="text pt-3"><b>Address: </b>{{park_list.Park_Address}}</p>
+                        <p> </p>
+                        <p class="text pt-3"><b>County: </b>{{park_list.County}}</p>
+                        <p></p>
+                        <p></p>
+                        <h5><b>Park Properties:</b></h5>
+                        {% for prop in prop %}
+                            <a href="{% url 'aafieldapp:emppropertyview' id=prop.id %}">{{prop.Property_Name}}</a>
+                            <p></p>
+                        {% endfor %}
+                        <p></p>
+                        <p></p>
+                        <p>
+                        <a href="{% url 'aafieldapp:updatepark' id=park_list.id %}">Edit Park |</a>
+                        <a href="{% url 'aafieldapp:deletepark' id=park_list.id %}">Delete Park |</a>
+                        <a href="{% url 'aafieldapp:addproperty' id=park_list.id %}">Add Property</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

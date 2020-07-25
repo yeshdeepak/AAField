@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    All events
+{% endblock %}
+
+{% block content %}
+
+<div class="container-1">
+<div class="row pt-5 pl-5">
+      <div class="col-md-10 ">
+                      <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong class="">Booking </strong>
+                </div>
+                <div class="panel-body">
+                <form id="myForm" action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Park Name</label>
+                               <input type="text" class="form-control" id="park"  value=" {{prop.Park_Name}} " name="park_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Property Name</label>
+                               <input type="text" class="form-control" id="park"  value=" {{prop.Property_Name}} " name="property_name">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Park Address</label>
+                               <input type="text" class="form-control" id="park"  value=" {{park.Park_Address}} " name="park_address">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Event Date</label>
+                               <input type="text" class="form-control" id="park"  value={{event_date}} name="event_date">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="Park">Available Slots: </label>
+                            <p></p>
+                            {% for avail_slot in avail_slot %}
+                                  <input type="radio"   name="slots" value="{{avail_slot}}">{{avail_slot}}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                         Selected Slot: <input type="text" id="myText" value="Slot" name="slot">
+                        </div>
+                    </div>
+
+<script>
+    (function (){
+        var radios = document.getElementsByName('slots');
+        console.log(radios);
+        for(var i = 0; i < radios.length; i++){
+            radios[i].onclick = function(){
+                document.getElementById('myText').value = this.value;
+            }
+        }
+    })();
+</script>
+
+
+
+<div class="form-row text-center">
+                        <button class="btn btn-primary" type="submit" name="reserve">Reserve</button>
+                    </div>
+                </form>
+     </div>
+ </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

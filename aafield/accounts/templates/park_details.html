@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load is_already_applied %}
+{% block title %}
+    Event details
+{% endblock %}
+
+{% block content %}
+
+    <section class="bg-light-gray">
+        <div class="container">
+            <h1 class="heading">{{ event.title }}<br>
+                <small>for <a href="#">{{ event.company_name }}</a></small>
+            </h1>
+            <div class="event-detail-description"><i class="fa fa-map-marker event__location"> </i>
+                {{ event.location }} | Posted {{ event.created_at|timesince }} |
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Category: {{ event.category }}</h3>
+                    <h5 class="text-info">Event date: {{ event.last_date|date }}</h5>
+                    <blockquote class="blockquote">
+                        <p>{{ event.description }}</p>
+                    </blockquote>
+                {% if request.user.is_authenticated and request.user.role == 'volunteer' %}
+                    <div class="event-detail__apply-bottom">
+                        {% if request.user.is_authenticated %}
+                            {% is_already_applied event request.user as is_applied %}
+                            {% if is_applied %}
+                                <input type="button" class="btn btn-outline-success" value="Already Signed up"/>
+                            {% else %}
+                                <form action="{% url 'events:apply-event' event.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="event" value="{{ event.id }}">
+                                    <input type="submit" class="btn btn-outline-white-primary"
+                                           value="Sign up for this event"/>
+                                </form>
+                            {% endif %}
+                        {% else %}
+                            <form action="{% url 'events:apply-event' event.id %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="event" value="{{ event.id }}">
+                                <input type="submit" class="btn btn-outline-white-primary"
+                                       value="Sign up for this event"/>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% else %}
+                {% endif %}
+
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3">
+                    <h4>About {{ event.company_name }}</h4>
+                    <p class="event-detail__company-description">{{ event.company_description }}</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
